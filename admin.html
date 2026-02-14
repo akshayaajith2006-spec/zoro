@@ -1,14 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
+
   <h2>Admin Panel</h2>
 
-  <input type="text" placeholder="Event Name">
-  <input type="number" placeholder="Seat Limit">
-  <button>Create Event</button>
+  <input type="text" id="title" placeholder="Event Name">
+  <br><br>
+
+  <input type="number" id="seats" placeholder="Seat Limit">
+  <br><br>
+
+  <button onclick="addEvent()">Create Event</button>
+
+  <h3>Events List</h3>
+  <div id="eventList"></div>
+
+  <script type="module" src="js/admin.js"></script>
 
 </body>
+
 </html>
