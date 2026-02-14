@@ -1,23 +1,27 @@
-give attractive dashbaord with imahges bacjgrof <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Dashboard</title>
+  <title>BookMySlot - Dashboard</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
-  <h2>Student Dashboard</h2>
-  <button onclick="logoutUser()">Logout</button>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="logo">BookMySlot</div>
+    <button class="nav-logout" onclick="logoutUser()">Logout</button>
+  </div>
 
-  <h3>Available Events</h3>
-  <div id="eventList"></div>
+  <!-- DASHBOARD -->
+  <div class="dashboard-container">
+    <h2>Student Dashboard</h2>
+
+    <h3>Available Events</h3>
+
+    
 
   <script type="module" src="js/booking.js"></script>
-
 </body>
-
-</html> file name dashboard_user.html
+</html>

@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
+<body class="admin-bg">
 
-  <h2>Admin Panel</h2>
-  <button onclick="logoutUser()">Logout</button>
+  <div class="admin-container">
 
-  <input type="text" id="title" placeholder="Event Name">
-  <br><br>
+    <!-- Header -->
+    <div class="admin-header">
+      <h2>Admin Panel</h2>
+      <button class="logout-btn" onclick="logoutUser()">Logout</button>
+    </div>
 
-  <input type="number" id="seats" placeholder="Seat Limit">
-  <br><br>
+    <!-- Create Event Section -->
+    <div class="card">
+      <h3>Create Event</h3>
 
-  <button onclick="addEvent()">Create Event</button>
+      <input type="text" placeholder="Event Name">
+      <input type="number" placeholder="Seat Limit">
 
-  <h3>Events List</h3>
-  <div id="eventList"></div>
+      <button class="primary-btn">Create Event</button>
+    </div>
 
-  <script type="module" src="js/admin.js"></script>
+    <!-- Event List Section -->
+    <div class="card">
+      <h3>Events List</h3>
+
+      <!-- UI sample only -->
+      <p><strong>NAKSHTRA</strong> — Seats: 0</p>
+    </div>
+
+  </div>
 
 </body>
-
 </html>

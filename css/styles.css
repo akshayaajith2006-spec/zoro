@@ -1,84 +1,110 @@
-/* ===== Global Reset ===== */
+/* ===== RESET ===== */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
 }
 
-/* ===== Page Background ===== */
+/* ===== BODY BACKGROUND ===== */
 body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
   min-height: 100vh;
-  background: linear-gradient(120deg, #1d2671, #c33764);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  background: linear-gradient(135deg, #4b2c7a, #a23b72);
+  padding-top: 80px;
 }
 
-/* ===== Main Container (Login / Dashboard Box) ===== */
-.login-container,
-.container {
-  background: rgba(255, 255, 255, 0.15);
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
-  padding: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+}
+
+.nav-logout {
+  background: #00b3ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.nav-logout:hover {
+  background: #0095d6;
+}
+
+/* ===== GLASS CARD ===== */
+.login-container,
+.admin-container,
+.dashboard-container {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 30px;
+  border-radius: 18px;
   width: 360px;
-  border-radius: 16px;
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
-  color: #ffffff;
+  margin: 40px auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
-/* ===== Headings ===== */
-h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 24px;
-  font-weight: 600;
-}
-
-/* ===== Inputs ===== */
+/* ===== INPUTS ===== */
 input {
   width: 100%;
-  padding: 12px 15px;
+  padding: 14px;
   margin: 12px 0;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
-  outline: none;
   font-size: 14px;
 }
 
-/* ===== Button ===== */
+/* ===== BUTTONS ===== */
 button {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   margin-top: 15px;
+  border-radius: 12px;
   border: none;
-  border-radius: 8px;
-  background: linear-gradient(to right, #00c6ff, #0072ff);
+  background: #00b3ff;
   color: white;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+  background: #0095d6;
 }
 
-/* ===== Error Text ===== */
-#error {
-  margin-top: 12px;
-  font-size: 13px;
+/* ===== HEADINGS ===== */
+h2, h3 {
   text-align: center;
-  color: #ffdada;
+  margin-bottom: 20px;
 }
 
-/* ===== Dashboard Event Cards (Future Safe) ===== */
-#events div {
+/* ===== EVENT LIST ===== */
+.event {
   background: rgba(255, 255, 255, 0.2);
-  padding: 15px;
+  padding: 12px;
   border-radius: 10px;
-  margin: 10px 0;
+  margin-top: 10px;
+}
+
+/* ===== ERROR ===== */
+#error {
+  margin-top: 10px;
+  text-align: center;
+  color: #ffdede;
 }
