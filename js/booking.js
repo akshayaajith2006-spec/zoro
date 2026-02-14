@@ -1,25 +1,32 @@
 import { app } from "./firebase-config.js";
 
 import { getAuth, signOut }
-    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { 
+    getFirestore, 
+    collection, 
+    doc, 
+    addDoc,
+    query,
+    where,
+    runTransaction,
+    onSnapshot,
+    getDocs
+} 
 
-import { getFirestore, collection, getDocs, doc, updateDoc, addDoc, query, where }
-    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// Logout
 window.logoutUser = async function () {
     await signOut(auth);
     window.location.href = "index.html";
 };
 
-window.bookEvent = async function (eventId, seatsLeft, title) {
-
-    if (seatsLeft <= 0) {
-        alert("Event Full");
-        return;
-    }
+// Booking with Transaction
+window.bookEvent = async function (eventId, title) {
 
     const user = auth.currentUser;
 
@@ -30,7 +37,7 @@ window.bookEvent = async function (eventId, seatsLeft, title) {
 
     try {
 
-        // Check duplicate booking
+        // Duplicate check
         const q = query(
             collection(db, "bookings"),
             where("eventId", "==", eventId),
@@ -44,14 +51,27 @@ window.bookEvent = async function (eventId, seatsLeft, title) {
             return;
         }
 
-        // Reduce seat
         const eventRef = doc(db, "events", eventId);
 
-        await updateDoc(eventRef, {
-            seatsLeft: seatsLeft - 1
+        await runTransaction(db, async (transaction) => {
+
+            const eventDoc = await transaction.get(eventRef);
+
+            if (!eventDoc.exists()) {
+                throw "Event does not exist!";
+            }
+
+            const currentSeats = eventDoc.data().seatsLeft;
+
+            if (currentSeats <= 0) {
+                throw "Event Full";
+            }
+
+            transaction.update(eventRef, {
+                seatsLeft: currentSeats - 1
+            });
         });
 
-        // Add booking
         await addDoc(collection(db, "bookings"), {
             eventId: eventId,
             userEmail: user.email,
@@ -60,28 +80,40 @@ window.bookEvent = async function (eventId, seatsLeft, title) {
 
         alert("Booking Successful");
 
-        loadEvents();
-
     } catch (error) {
+        alert(error);
         console.error(error);
     }
 };
 
-async function loadEvents() {
-
-    const querySnapshot = await getDocs(collection(db, "events"));
+// Load Events
+function loadEventsRealtime() {
 
     const eventList = document.getElementById("eventList");
-    eventList.innerHTML = "";
 
-    querySnapshot.forEach((docSnap) => {
-        const data = docSnap.data();
-        eventList.innerHTML += `
-            <p>${data.title} - Seats Left: ${data.seatsLeft}
-            <button onclick="bookEvent('${docSnap.id}', ${data.seatsLeft}, '${data.title}')">Book</button>
-            </p>
-        `;
+    onSnapshot(collection(db, "events"), (snapshot) => {
+
+        eventList.innerHTML = "";
+
+        snapshot.forEach((docSnap) => {
+
+            const data = docSnap.data();
+
+            eventList.innerHTML += `
+                <p>
+                    ${data.title} - Seats Left: ${data.seatsLeft}
+                    <button onclick="bookEvent('${docSnap.id}', '${data.title}')">
+                        Book
+                    </button>
+                </p>
+            `;
+        });
     });
 }
+
+loadEventsRealtime();
+
+
+loadEventsRealtime();
 
 loadEvents();
