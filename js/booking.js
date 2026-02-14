@@ -1,20 +1,20 @@
 import { app } from "./firebase-config.js";
 
 import { getAuth, signOut }
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { 
-    getFirestore, 
-    collection, 
-    doc, 
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {
+    getFirestore,
+    collection,
+    doc,
     addDoc,
     query,
     where,
     runTransaction,
     onSnapshot,
     getDocs
-} 
+}
 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -112,8 +112,3 @@ function loadEventsRealtime() {
 }
 
 loadEventsRealtime();
-
-
-loadEventsRealtime();
-
-loadEvents();
