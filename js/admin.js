@@ -1,11 +1,20 @@
 import { app } from "./firebase-config.js";
 
-import { getFirestore, collection, addDoc, getDocs } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getAuth, signOut }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
+import { getFirestore, collection, addDoc, getDocs }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const auth = getAuth(app);
 const db = getFirestore(app);
 
-window.addEvent = async function() {
+window.logoutUser = async function () {
+    await signOut(auth);
+    window.location.href = "index.html";
+};
+
+window.addEvent = async function () {
 
     const title = document.getElementById("title").value;
     const seats = parseInt(document.getElementById("seats").value);

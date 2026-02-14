@@ -1,15 +1,20 @@
 import { app } from "./firebase-config.js";
 
-import { getAuth }
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, signOut }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 import { getFirestore, collection, getDocs, doc, updateDoc, addDoc, query, where }
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-window.bookEvent = async function(eventId, seatsLeft, title) {
+window.logoutUser = async function () {
+    await signOut(auth);
+    window.location.href = "index.html";
+};
+
+window.bookEvent = async function (eventId, seatsLeft, title) {
 
     if (seatsLeft <= 0) {
         alert("Event Full");
