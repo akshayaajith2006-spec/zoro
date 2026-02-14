@@ -33,5 +33,6 @@ window.loginUser = async function () {
 
     } catch (error) {
         document.getElementById("error").innerText = "Login Failed";
+        console.error(error);
     }
 };
