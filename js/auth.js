@@ -9,23 +9,52 @@ import { getFirestore, collection, getDocs, doc, setDoc }
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-window.loginUser = async function () {
+// Toast helper
+function showToast(message, type = "info") {
+    const container = document.getElementById("toastContainer");
+    if (!container) return;
+    const toast = document.createElement("div");
+    toast.className = `toast toast-${type}`;
+    toast.textContent = message;
+    container.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
 
-    const email = document.getElementById("email").value;
+// Clean Firebase error messages
+function cleanError(msg) {
+    return msg
+        .replace("Firebase: ", "")
+        .replace(/\(auth\/.*\)\.?/, "")
+        .trim() || "Something went wrong";
+}
+
+// Login
+window.loginUser = async function () {
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
     document.getElementById("error").innerText = "";
     document.getElementById("success").innerText = "";
+
+    if (!email || !password) {
+        showToast("Please enter email and password", "error");
+        return;
+    }
+
+    // Disable buttons
+    const buttons = document.querySelectorAll(".btn-row button");
+    buttons.forEach(b => { b.disabled = true; b.textContent = "Logging in..."; });
 
     try {
         await signInWithEmailAndPassword(auth, email, password);
 
         const snapshot = await getDocs(collection(db, "users"));
 
-        snapshot.forEach((doc) => {
-            const data = doc.data();
-
+        let redirected = false;
+        snapshot.forEach((docSnap) => {
+            const data = docSnap.data();
             if (data.email === email) {
+                redirected = true;
                 if (data.role === "admin") {
                     window.location.href = "admin.html";
                 } else {
@@ -34,24 +63,37 @@ window.loginUser = async function () {
             }
         });
 
+        if (!redirected) {
+            showToast("User data not found. Contact admin.", "error");
+            buttons.forEach(b => { b.disabled = false; });
+            buttons[0].textContent = "Login";
+            buttons[1].textContent = "Register";
+        }
+
     } catch (error) {
-        document.getElementById("error").innerText = "Login Failed: " + error.message;
+        showToast(cleanError(error.message), "error");
+        buttons.forEach(b => { b.disabled = false; });
+        buttons[0].textContent = "Login";
+        buttons[1].textContent = "Register";
         console.error(error);
     }
 };
 
+// Register
 window.registerUser = async function () {
-
-    const email = document.getElementById("email").value;
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
     document.getElementById("error").innerText = "";
     document.getElementById("success").innerText = "";
 
     if (!email || !password) {
-        document.getElementById("error").innerText = "Please enter email and password";
+        showToast("Please enter email and password", "error");
         return;
     }
+
+    const buttons = document.querySelectorAll(".btn-row button");
+    buttons.forEach(b => { b.disabled = true; b.textContent = "Registering..."; });
 
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -63,10 +105,14 @@ window.registerUser = async function () {
             role: "student"
         });
 
-        document.getElementById("success").innerText = "Registration successful! You can now log in.";
+        showToast("Registration successful! You can now log in.", "success");
 
     } catch (error) {
-        document.getElementById("error").innerText = "Registration Failed: " + error.message;
+        showToast(cleanError(error.message), "error");
         console.error(error);
     }
+
+    buttons.forEach(b => { b.disabled = false; });
+    buttons[0].textContent = "Login";
+    buttons[1].textContent = "Register";
 };

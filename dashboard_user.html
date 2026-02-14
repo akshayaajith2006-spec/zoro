@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>BookMySlot - Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookMySlot — Student Dashboard</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -10,18 +12,30 @@
 
   <!-- NAVBAR -->
   <div class="navbar">
-    <div class="logo">BookMySlot</div>
+    <div class="logo">
+      <span class="logo-icon">🎫</span> BookMySlot
+    </div>
     <button class="nav-logout" onclick="logoutUser()">Logout</button>
   </div>
 
   <!-- DASHBOARD -->
   <div class="dashboard-container">
     <h2>Student Dashboard</h2>
+    <p class="welcome-text" id="welcomeText">Browse and book upcoming events</p>
 
-    <h3>Available Events</h3>
+    <h3>📅 Available Events</h3>
 
-    
+    <div id="loading" class="spinner-wrap">
+      <div class="spinner"></div>
+    </div>
+    <div id="eventList" class="event-grid"></div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
 
   <script type="module" src="js/booking.js"></script>
+
 </body>
+
 </html>

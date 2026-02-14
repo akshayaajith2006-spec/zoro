@@ -1,40 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookMySlot — Admin Dashboard</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body class="admin-bg">
+<body>
 
-  <div class="admin-container">
-
-    <!-- Header -->
-    <div class="admin-header">
-      <h2>Admin Panel</h2>
-      <button class="logout-btn" onclick="logoutUser()">Logout</button>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="logo">
+      <span class="logo-icon">🎫</span> BookMySlot
     </div>
-
-    <!-- Create Event Section -->
-    <div class="card">
-      <h3>Create Event</h3>
-
-      <input type="text" placeholder="Event Name">
-      <input type="number" placeholder="Seat Limit">
-
-      <button class="primary-btn">Create Event</button>
-    </div>
-
-    <!-- Event List Section -->
-    <div class="card">
-      <h3>Events List</h3>
-
-      <!-- UI sample only -->
-      <p><strong>NAKSHTRA</strong> — Seats: 0</p>
-    </div>
-
+    <button class="nav-logout" onclick="logoutUser()">Logout</button>
   </div>
 
+  <!-- ADMIN CONTENT -->
+  <div class="admin-container">
+
+    <div class="admin-header">
+      <h2>🛠 Admin Dashboard</h2>
+    </div>
+
+    <div class="admin-grid">
+
+      <!-- Create Event Form -->
+      <div class="card">
+        <h3><span class="card-icon">📝</span> Create Event</h3>
+
+        <label for="title">Event Name *</label>
+        <input type="text" id="title" placeholder="e.g. Tech Fest 2026">
+
+        <label for="seats">Seat Limit *</label>
+        <input type="number" id="seats" placeholder="e.g. 100" min="1">
+
+        <label for="venue">Venue *</label>
+        <input type="text" id="venue" placeholder="e.g. Main Auditorium">
+
+        <label for="date">Date *</label>
+        <input type="date" id="date">
+
+        <label for="time">Time *</label>
+        <input type="time" id="time">
+
+        <label for="instructions">Instructions</label>
+        <textarea id="instructions" placeholder="Any special instructions for attendees..."></textarea>
+
+        <label for="imageUrl">Image URL</label>
+        <input type="text" id="imageUrl" placeholder="https://example.com/image.jpg">
+
+        <button class="primary-btn" onclick="addEvent()">🚀 Create Event</button>
+      </div>
+
+      <!-- Event List -->
+      <div class="card">
+        <h3><span class="card-icon">📋</span> All Events</h3>
+        <div id="loading" class="spinner-wrap">
+          <div class="spinner"></div>
+        </div>
+        <div id="eventList"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script type="module" src="js/admin.js"></script>
+
 </body>
+
 </html>
