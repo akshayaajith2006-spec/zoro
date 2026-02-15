@@ -2,13 +2,13 @@ BookMySlot – Wi-Fi Based Event Booking System
 🎯 Basic Details
 
 Project Name: BookMySlot
-Team Name: [Your Team Name]
+Team Name: ZORO
 
 👥 Team Members
 
-Member 1: [Name] – [College Name]
+Member 1: AVANI BIJU  – SAINTGITS COLLEGE OF ENGINEERING
 
-Member 2: [Name] – [College Name]
+Member 2: AKSHAYA A –  SAINTGITS COLLEGE OF ENGINEERING
 
 🌐 Hosted Project Link
 
@@ -308,7 +308,7 @@ Wi-Fi hosting setup
 
 👨‍💻 Team Contributions
 
-Member 1:
+Member 2:
 
 Frontend UI development
 
@@ -318,7 +318,7 @@ Confirmation page implementation
 
 UI styling & animations
 
-Member 2:
+Member 1:
 
 Firebase Authentication setup
 
