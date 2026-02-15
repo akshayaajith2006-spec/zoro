@@ -253,7 +253,7 @@ role (student/admin)
 
 🎥 Project Demo
 
-Video Link: [Add YouTube / Drive Link Here]
+Video Link: https://drive.google.com/file/d/1czSXMihDPEXheLZdBi8e1DC6GJy002y6/view?usp=drive_link
 
 Video Demonstrates:
 
