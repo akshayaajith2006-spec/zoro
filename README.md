@@ -162,17 +162,12 @@ http://10.10.156.36:8000
 
 📷 Project Documentation
 📸 Screenshots
-Screenshot 1 – Student Dashboard
-
-
-Shows event grid layout with seat badges and booking buttons.
-
-Screenshot 2 – Admin Panel
-
-
-Displays event creation form and real-time event management.
-
-Screenshot 3 – Confirmation Page
+![WhatsApp Image 2026-02-15 at 10 19 56](https://github.com/user-attachments/assets/cf9284b3-7bf3-4748-810f-449cc6a9f2fd)
+![WhatsApp Image 2026-02-15 at 10 19 56 (2)](https://github.com/user-attachments/assets/5151b7d6-7299-4239-940d-aabca06bac78)
+![WhatsApp Image 2026-02-15 at 10 20 17](https://github.com/user-attachments/assets/03725d68-1559-4eda-9505-34a16d3e4003)
+![WhatsApp Image 2026-02-15 at 10 23 23](https://github.com/user-attachments/assets/097fd54d-7829-4274-a58c-f02c491d10b0)
+![WhatsApp Image 2026-02-15 at 10 23 23](https://github.com/user-attachments/assets/263eb01d-1802-42bc-9c00-d41b4d392614)
+![WhatsApp Image 2026-02-15 at 10 27 59](https://github.com/user-attachments/assets/8203ce2f-f8c7-4d03-8837-49f80f3cc4e2)
 
 
 Shows event details after successful booking.
