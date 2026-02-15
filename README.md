@@ -168,7 +168,6 @@ http://10.10.156.36:8000
 ![WhatsApp Image 2026-02-15 at 10 23 23](https://github.com/user-attachments/assets/097fd54d-7829-4274-a58c-f02c491d10b0)
 ![WhatsApp Image 2026-02-15 at 10 23 23](https://github.com/user-attachments/assets/263eb01d-1802-42bc-9c00-d41b4d392614)
 ![WhatsApp Image 2026-02-15 at 10 27 59](https://github.com/user-attachments/assets/8203ce2f-f8c7-4d03-8837-49f80f3cc4e2)
-![WhatsApp Image 2026-02-15 at 10 27 59](https://github.com/user-attachments/assets/9e953ecc-e792-428f-b667-159927cacf0e)
 ![WhatsApp Image 2026-02-15 at 10 28 43 (1)](https://github.com/user-attachments/assets/b53bcfd3-6341-4bcc-8ce4-9f421e1533f2)
 
 Shows event details after successful booking.
