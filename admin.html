@@ -23,6 +23,16 @@
 
     <div class="admin-header">
       <h2>🛠 Admin Dashboard</h2>
+      <div style="display: flex; gap: 12px; position: relative;">
+        <!-- User Mgmt Dropdown -->
+        <div class="user-menu-container">
+          <button class="secondary-btn" onclick="toggleUserMenu()" style="margin:0;">👥 Manage Users</button>
+          <div id="userDropdown" class="user-dropdown">
+            <div id="userList">Loading...</div>
+          </div>
+        </div>
+        <button class="logout-btn" onclick="logoutUser()">Logout</button>
+      </div>
     </div>
 
     <div class="admin-grid">

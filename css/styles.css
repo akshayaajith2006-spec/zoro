@@ -10,7 +10,7 @@
   --bg-input: #0f1729;
   --accent: #00b4d8;
   --accent-hover: #0096b7;
-  --accent-glow: rgba(0, 180, 216, 0.25);
+  --accent-glow: rgba(0, 180, 216, 0.15);
   --danger: #ef4444;
   --danger-hover: #dc2626;
   --success: #22c55e;
@@ -20,14 +20,14 @@
   --text-muted: #64748b;
   --border: #1e293b;
   --border-light: #334155;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --transition: all 0.25s ease;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --transition: all 0.2s ease;
 }
 
 /* ===== RESET ===== */
@@ -90,7 +90,7 @@ body {
   font-size: 14px;
   font-weight: 500;
   font-family: inherit;
-  transition: var(--transition);
+  transition: background 0.2s ease;
   width: auto;
   margin: 0;
 }
@@ -117,7 +117,7 @@ body {
   border-radius: var(--radius-xl);
   width: 100%;
   max-width: 420px;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
 
 }
 
@@ -173,7 +173,7 @@ input:focus,
 textarea:focus,
 select:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-glow);
+  box-shadow: 0 0 0 2px var(--accent-glow);
 }
 
 input::placeholder,
@@ -208,7 +208,7 @@ button {
   font-weight: 600;
   font-family: inherit;
   cursor: pointer;
-  transition: var(--transition);
+  transition: background 0.2s ease;
 }
 
 button:hover {
@@ -282,7 +282,7 @@ button:hover {
   border: 1px solid var(--border);
   padding: 28px;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .card h3 {
@@ -339,12 +339,12 @@ button:hover {
   border-radius: var(--radius-md);
   padding: 16px 20px;
   margin-bottom: 12px;
-  transition: var(--transition);
+  transition: border-color 0.2s ease;
 }
 
 .admin-event:hover {
   border-color: var(--border-light);
-  transform: translateX(4px);
+  transform: none;
 }
 
 .admin-event .event-title {
@@ -373,6 +373,48 @@ button:hover {
   font-size: 13px;
   color: var(--text-muted);
   font-style: italic;
+}
+
+/* ===== PARTICIPANTS LIST ===== */
+.participants-list {
+  margin-top: 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0;
+  overflow: hidden;
+  animation: fadeInUp 0.3s ease;
+}
+
+.participant-item {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.participant-item:last-child {
+  border-bottom: none;
+}
+
+.participant-item strong {
+  color: var(--text-primary);
+}
+
+.view-btn {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--border-light);
+  margin-left: 8px;
+}
+
+.view-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--accent-hover);
+  border-color: var(--accent);
 }
 
 /* ===== STUDENT DASHBOARD ===== */
@@ -418,10 +460,38 @@ button:hover {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease;
 }
 
 .event-card:hover {
   border-color: var(--border-light);
+}
+
+/* ===== USER DROPDOWN ===== */
+.user-menu-container {
+  position: relative;
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  z-index: 2000;
+  margin-top: 8px;
+  animation: fadeInUp 0.2s ease;
+}
+
+.user-dropdown.show {
+  display: block;
 }
 
 .event-card-img {
@@ -583,7 +653,7 @@ h3 {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
 
   to {
@@ -595,7 +665,7 @@ h3 {
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(20px);
   }
 
   to {
@@ -607,7 +677,7 @@ h3 {
 @keyframes fadeOut {
   to {
     opacity: 0;
-    transform: translateX(40px);
+    transform: translateX(10px);
   }
 }
 

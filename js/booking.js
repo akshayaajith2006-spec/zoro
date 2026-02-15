@@ -1,7 +1,7 @@
 import { app } from "./firebase-config.js";
 
 import { getAuth, signOut, onAuthStateChanged }
-    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 import {
     getFirestore,
@@ -14,7 +14,7 @@ import {
     onSnapshot,
     getDocs
 }
-    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -102,7 +102,8 @@ window.bookEvent = async function (eventId, title) {
             eventTitle: title
         });
 
-        showToast("Booking confirmed! 🎉", "success");
+        // 🔥 ONLY CHANGE: redirect to confirmation page
+        window.location.href = `confirmation.html?event=${eventId}`;
 
     } catch (error) {
         showToast(typeof error === "string" ? error : "Booking failed", "error");
@@ -127,7 +128,6 @@ function loadEventsRealtime() {
     const loading = document.getElementById("loading");
 
     onSnapshot(collection(db, "events"), (snapshot) => {
-        // Hide loading spinner
         if (loading) loading.style.display = "none";
 
         eventList.innerHTML = "";
@@ -164,7 +164,10 @@ function loadEventsRealtime() {
                         <p><span class="info-icon">🕐</span> ${data.time || "—"}</p>
                         <p>${seatBadge(data.seatsLeft)}</p>
                     </div>
-                    <button class="book-btn" data-event-id="${docSnap.id}" onclick="bookEvent('${docSnap.id}', '${data.title.replace(/'/g, "\\'")}')" ${isFull ? 'disabled' : ''}>
+                    <button class="book-btn"
+                        data-event-id="${docSnap.id}"
+                        onclick="bookEvent('${docSnap.id}', '${data.title.replace(/'/g, "\\'")}')"
+                        ${isFull ? 'disabled' : ''}>
                         ${isFull ? 'Sold Out' : 'Book Now'}
                     </button>
                 </div>
