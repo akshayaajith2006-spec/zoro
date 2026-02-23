@@ -15,7 +15,6 @@
     <div class="logo">
       <span class="logo-icon">🎫</span> BookMySlot
     </div>
-    <button class="nav-logout" onclick="logoutUser()">Logout</button>
   </div>
 
   <!-- ADMIN CONTENT -->
@@ -61,6 +60,14 @@
 
         <label for="imageUrl">Image URL</label>
         <input type="text" id="imageUrl" placeholder="https://example.com/image.jpg">
+
+        <div class="toggle-row">
+          <label for="cancellable" style="margin:0;">Allow Cancellation</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="cancellable" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
 
         <button class="primary-btn" onclick="addEvent()">🚀 Create Event</button>
       </div>

@@ -50,6 +50,7 @@ window.addEvent = async function () {
     const time = document.getElementById("time").value;
     const instructions = document.getElementById("instructions").value.trim();
     const imageUrl = document.getElementById("imageUrl").value.trim();
+    const cancellable = document.getElementById("cancellable").checked;
 
     if (!title || !seats || !venue || !date || !time) {
         showToast("Please fill all required fields", "error");
@@ -75,7 +76,8 @@ window.addEvent = async function () {
                 date,
                 time,
                 instructions: instructions || "",
-                imageUrl: imageUrl || ""
+                imageUrl: imageUrl || "",
+                cancellable: cancellable
             });
 
             showToast("Event updated successfully!", "success");
@@ -91,7 +93,8 @@ window.addEvent = async function () {
                 date,
                 time,
                 instructions: instructions || "",
-                imageUrl: imageUrl || ""
+                imageUrl: imageUrl || "",
+                cancellable: cancellable
             });
 
             showToast("Event created successfully!", "success");
@@ -116,6 +119,7 @@ function clearForm() {
     document.getElementById("time").value = "";
     document.getElementById("instructions").value = "";
     document.getElementById("imageUrl").value = "";
+    document.getElementById("cancellable").checked = true;
 }
 
 // Edit Event
@@ -135,6 +139,7 @@ window.editEvent = async function (eventId) {
     document.getElementById("time").value = data.time;
     document.getElementById("instructions").value = data.instructions;
     document.getElementById("imageUrl").value = data.imageUrl;
+    document.getElementById("cancellable").checked = data.cancellable !== false;
 
     editingEventId = eventId;
 
@@ -226,6 +231,8 @@ function loadEventsRealtime() {
             const div = document.createElement("div");
             div.className = "admin-event";
 
+            const isCancellable = data.cancellable !== false;
+
             div.innerHTML = `
                 <div class="event-title">${data.title}</div>
                 <div class="event-meta">
@@ -233,6 +240,7 @@ function loadEventsRealtime() {
                     <span>📅 ${data.date}</span>
                     <span>🕐 ${data.time}</span>
                     <span>💺 ${data.seatsLeft} seats</span>
+                    <span>${isCancellable ? '✅ Cancellable' : '🔒 Non-cancellable'}</span>
                 </div>
                 ${data.instructions ? `<div class="event-instructions">"${data.instructions}"</div>` : ""}
                 <div style="margin-top:10px;">

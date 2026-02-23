@@ -29,6 +29,25 @@
       <div class="spinner"></div>
     </div>
     <div id="eventList" class="event-grid"></div>
+
+    <h3 style="margin-top: 40px;">📋 My Bookings</h3>
+    <div id="myBookings" class="event-grid"></div>
+  </div>
+
+  <!-- NON-CANCELLABLE WARNING MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card">
+      <div style="font-size: 48px; text-align: center; margin-bottom: 12px;">⚠️</div>
+      <h3 style="text-align: center; color: var(--text-primary); font-size: 20px; margin-bottom: 8px;">Non-Cancellable
+        Event</h3>
+      <p style="text-align: center; color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">
+        This booking <strong>cannot be cancelled</strong> once confirmed. Are you sure you want to proceed?
+      </p>
+      <div style="display: flex; gap: 12px;">
+        <button class="secondary-btn" onclick="closeModal()" style="flex:1;">Go Back</button>
+        <button class="primary-btn" id="modalConfirmBtn" style="flex:1;">Yes, Book It</button>
+      </div>
+    </div>
   </div>
 
   <!-- TOAST CONTAINER -->

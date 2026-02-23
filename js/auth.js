@@ -43,7 +43,8 @@ window.loginUser = async function () {
 
     // Disable buttons
     const buttons = document.querySelectorAll(".btn-row button");
-    buttons.forEach(b => { b.disabled = true; b.textContent = "Logging in..."; });
+    buttons.forEach(b => b.disabled = true);
+    buttons[0].textContent = "Logging in...";
 
     try {
         await signInWithEmailAndPassword(auth, email, password);
@@ -93,7 +94,8 @@ window.registerUser = async function () {
     }
 
     const buttons = document.querySelectorAll(".btn-row button");
-    buttons.forEach(b => { b.disabled = true; b.textContent = "Registering..."; });
+    buttons.forEach(b => b.disabled = true);
+    buttons[1].textContent = "Registering...";
 
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
